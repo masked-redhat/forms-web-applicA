@@ -11,10 +11,7 @@ import me.skhull.formswebapplication.models.VMReallocationRequest;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -116,22 +113,27 @@ public class PDFGenerator {
         return PDFOutputPathLoc + Filename;
     }
 
-    public static void servePDF(HttpServletRequest request, HttpServletResponse response, String FileName) throws ServletException, IOException {
+    public static void servePDF(HttpServletRequest request, HttpServletResponse response, String FileName, String refKey) throws ServletException, IOException {
         // PDF file
         File pdfFile = new File(FileName);
 
         // Response header
         response.setContentType("application/pdf");
-        response.addHeader("Content-Disposition", "inline; filename=" + FileName);
-        response.setContentLength((int) pdfFile.length());
+        response.setHeader("Content-Disposition", "inline; filename=\""+refKey+".pdf\"");
 
-        // Serving PDF
-        FileInputStream fileInputStream = new FileInputStream(pdfFile);
-        OutputStream responseOutputStream = response.getOutputStream();
-        int bytes;
-        while ((bytes = fileInputStream.read()) != -1) {
-            responseOutputStream.write(bytes);
+        // Stream the PDF file
+        InputStream inputStream = new FileInputStream(FileName);
+        OutputStream outputStream = response.getOutputStream();
+
+        byte[] buffer = new byte[1024];
+        int bytesRead = -1;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
         }
+
+        inputStream.close();
+        outputStream.close();
 
     }
 }

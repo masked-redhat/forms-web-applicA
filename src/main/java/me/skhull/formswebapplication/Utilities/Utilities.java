@@ -104,7 +104,7 @@ public class Utilities {
 
         if (dataSavedInDatabase) {
             String generatedPDFLocation = PDFGenerator.generatePDF(lanPortRequest, ReferenceKey+".pdf", date);
-            PDFGenerator.servePDF(request, response, generatedPDFLocation);
+            PDFGenerator.servePDF(request, response, generatedPDFLocation, ReferenceKey);
         } else{
             Utilities.serveInvalidResponse(request, response);
         }
@@ -125,7 +125,7 @@ public class Utilities {
 
         if (dataSavedInDatabase) {
             String generatedPDFLocation = PDFGenerator.generatePDF(projEmpRequest, ReferenceKey+".pdf");
-            PDFGenerator.servePDF(request, response, generatedPDFLocation);
+            PDFGenerator.servePDF(request, response, generatedPDFLocation, ReferenceKey);
         } else{
             Utilities.serveInvalidResponse(request, response);
         }
@@ -146,7 +146,7 @@ public class Utilities {
 
         if (dataSavedInDatabase) {
             String generatedPDFLocation = PDFGenerator.generatePDF(vmReallocationRequest, ReferenceKey+".pdf");
-            PDFGenerator.servePDF(request, response, generatedPDFLocation);
+            PDFGenerator.servePDF(request, response, generatedPDFLocation, ReferenceKey);
         } else{
             Utilities.serveInvalidResponse(request, response);
         }
