@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VM Reallocation Form</title>
+
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous"
+  />
+
+  <!-- Fonts - Titillium Web -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+          rel="stylesheet"
+  />
+
+  <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"
+          defer
+  ></script>
+
+  <style>
+    * {
+      font-family: "Titillium Web", sans-serif !important;
+    }
+
+    ::-webkit-input-placeholder {
+      text-transform: none;
+    }
+
+    :-moz-placeholder {
+      text-transform: none;
+    }
+
+    ::-moz-placeholder {
+      text-transform: none;
+    }
+
+    :-ms-input-placeholder {
+      text-transform: none;
+    }
+
+    ::placeholder {
+      text-transform: none;
+    }
+
+    #VMReallocationForm {
+      max-width: 1050px;
+    }
+  </style>
+</head>
+
+<body>
+<header class="d-flex flex-column align-items-center pt-4 px-4 m-auto">
+  <img
+          src="./images/iitkLogo.png""
+          alt="Indian Institute of Technology Kanpur"
+          width="85"
+          class="mb-3"
+  />
+  <h1 class="fs-2 fw-bold text-uppercase mb-0 text-center">
+    Indian Institute of Technology Kanpur
+  </h1>
+  <h2 class="text-center fs-3 mb-4">Computer Centre</h2>
+</header>
+
+<main class="mt-3">
+  <section class="d-flex flex-column">
+    <header>
+      <h3 class="fw-semibold fs-4 text-center mb-3">
+        Request Form for a Virtual Machine (VM) Reallocation
+      </h3>
+    </header>
+
+    <form
+            id="VMReallocationForm"
+            class="w-75 m-auto mb-5"
+            action="/vmrealloc"
+            method="post"
+    >
+      <div
+              class="form-row d-flex align-items-center w-100 gap-3 justify-content-between"
+      >
+        <div class="input-group mb-3 w-100">
+              <span class="input-group-text fw-semibold"
+              >Name of user making the request</span
+              >
+          <input
+                  type="text"
+                  name="userName"
+                  class="form-control"
+                  placeholder="Name of user"
+                  required
+          />
+        </div>
+      </div>
+
+      <div
+              class="form-row d-flex align-items-center w-100 gap-3 justify-content-between"
+      >
+        <div class="input-group mb-3 w-50">
+          <span class="input-group-text fw-semibold">P.F. Number</span>
+          <input
+                  name="pfNumber"
+                  type="text"
+                  class="form-control"
+                  placeholder="P.F. Number"
+                  required
+          />
+        </div>
+
+        <div class="input-group mb-3 w-50">
+          <span class="input-group-text fw-semibold">Department</span>
+          <input
+                  name="department"
+                  type="text"
+                  class="form-control"
+                  placeholder="Department"
+                  required
+          />
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text fw-semibold">Email</span>
+        <input
+                name="email"
+                type="text"
+                class="form-control"
+                placeholder="Email"
+                required
+        />
+        <span class="input-group-text fw-semibold">@iitk.ac.in</span>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text fw-semibold">Mobile number</span>
+        <input
+                name="mobileNumber"
+                type="tel"
+                class="form-control"
+                placeholder="Mobile number"
+                required
+        />
+      </div>
+
+      <div class="input-group mb-3">
+            <span class="input-group-text fw-semibold"
+            >IP address of existing VM</span
+            >
+        <input
+                name="vmIp"
+                type="text"
+                class="form-control"
+                placeholder="IP address"
+                required
+        />
+      </div>
+
+      <div class="input-group mb-3">
+            <span class="input-group-text fw-semibold"
+            >Full domain name of existing VM</span
+            >
+        <input
+                name="fullDomainName"
+                type="text"
+                class="form-control"
+                placeholder="Full domain name"
+                required
+        />
+      </div>
+
+      <div class="form-control mb-3 p-0">
+            <span
+                    class="input-group-text fw-semibold mb-2 border-0 border-bottom rounded-bottom-0"
+            >Services presently running on the VM</span
+            >
+        <div class="px-3 mb-2">
+          <div class="form-check">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="services"
+                    value="ftp"
+                    id="ftp"
+            />
+            <label class="form-check-label" for="ftp"> ftp </label>
+          </div>
+          <div class="form-check">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="services"
+                    value="http/https"
+                    id="http-https"
+            />
+            <label class="form-check-label" for="http-https">
+              http/https
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="services"
+                    value="mysql/DB"
+                    id="mysql-db"
+            />
+            <label class="form-check-label" for="mysql-db">
+              mysql/DB
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="services"
+                    id="otherService"
+                    value="other"
+            />
+            <label class="form-check-label" for="otherService">Other</label>
+          </div>
+        </div>
+        <div class="m-2">
+          <input
+                  type="text"
+                  class="form-control"
+                  name="otherService"
+                  placeholder="Write service names, if not listed or others. (comma separated values)"
+          />
+        </div>
+      </div>
+
+      <div class="form-control p-0 mb-3 flex-column">
+            <span
+                    class="input-group-text fw-semibold border-0 border-bottom rounded-0 rounded-top"
+            >Purpose of VM</span
+            >
+        <textarea
+                name="vmPurpose"
+                class="form-control border-0 rounded-top-0"
+                placeholder="Purpose of VM"
+                required
+                style="height: 130px"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+</main>
+</body>
+</html>
